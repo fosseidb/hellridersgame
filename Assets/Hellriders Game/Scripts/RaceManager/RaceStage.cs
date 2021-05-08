@@ -12,6 +12,8 @@ public class RaceStage : IState
     }
     public void OnEnter()
     {
+        //Set cameramode
+
         _raceTimer = 0f;
         _rm._RGUIC._raceTimer.gameObject.SetActive(true);
     }

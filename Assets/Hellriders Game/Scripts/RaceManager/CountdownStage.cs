@@ -15,6 +15,9 @@ public class CountdownStage : IState
 
     public void OnEnter()
     {
+        //Set cameramode
+        _rm._CMRC.OnRaceStart();
+
         Debug.Log("Setting timer to 3 sec.");
         _raceCountdownTimer = 3f;
         _rm._RGUIC._countDownPanel.SetActive(true);
@@ -35,5 +38,6 @@ public class CountdownStage : IState
     public void UpdateCountdownTimer()
     {
         _rm._RGUIC.UpdateCountdownTime(_raceCountdownTimer);
+        if(_raceCountdownTimer <= 1f) _rm._RGUIC._racePanel.SetActive(true);
     }
 }

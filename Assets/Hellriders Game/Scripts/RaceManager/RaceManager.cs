@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class RaceManager : MonoBehaviour
 {
-    [Header("GUI")]
+    [Header("GUI & Camera")]
     public RaceGUIController _RGUIC;
+    public CinemachineRaceController _CMRC;
 
     [Header("Hellrider")]
     public Hellrider _hellrider;
@@ -26,6 +27,7 @@ public class RaceManager : MonoBehaviour
     //stage 2
 
     //stage 3
+    private bool _finished;
 
 
     private void Awake()
@@ -37,10 +39,12 @@ public class RaceManager : MonoBehaviour
         var loadIn = new LoadInStage(this);
         var countdown = new CountdownStage(this);
         var race = new RaceStage(this);
+        var finish = new FinishStage(this);
 
         // connect our conditional transitions
         At(loadIn, countdown, AllPlayersLoaded());
         At(countdown, race, BeginRace());
+        At(race, finish, FinishRace());
 
         //Connect "From any State" transitions
 
@@ -51,8 +55,9 @@ public class RaceManager : MonoBehaviour
             _stateMachine.AddTransition(from, to, condition);
 
         //condition functions
-        Func<bool> AllPlayersLoaded() => () => _noLoadedPlayers == _noTotalPlayersInRace;
+        Func<bool> AllPlayersLoaded() => () => _noLoadedPlayers == _noTotalPlayersInRace && loadIn._introCountdownTimer <= 0f;
         Func<bool> BeginRace() => () => countdown._raceCountdownTimer <= 0f;
+        Func<bool> FinishRace() => () => _finished == true;
 
     }
 
@@ -97,5 +102,6 @@ public class RaceManager : MonoBehaviour
     private void HandlePlayerCrossesFinishLine(GameObject hellrider)
     {
         Debug.Log("Rider crosses finish line!");
+        _finished = true;
     }
 }

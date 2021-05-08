@@ -9,6 +9,7 @@ public class RaceGUIController : MonoBehaviour
     public TMP_Text _raceTimer;
     public TMP_Text _countDownTimer;
     public GameObject _countDownPanel;
+    public GameObject _racePanel;
 
     public void UpdateRaceTime(float timeToDisplay)
     {
