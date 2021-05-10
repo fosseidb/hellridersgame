@@ -6,7 +6,8 @@ public class CountdownStage : IState
 {
     private RaceManager _rm;
 
-    public float _raceCountdownTimer = 3f;
+    private const float TIMETOCOUNTDOWN = 3f;
+    public float _raceCountdownTimer;
 
     public CountdownStage(RaceManager rm)
     {
@@ -15,18 +16,22 @@ public class CountdownStage : IState
 
     public void OnEnter()
     {
+       
+        // set correct panel
+        _rm._RGUIC.countDownPanel.SetActive(true);
+
         //Set cameramode
         _rm._CMRC.OnRaceStart();
 
-        Debug.Log("Setting timer to 3 sec.");
-        _raceCountdownTimer = 3f;
-        _rm._RGUIC._countDownPanel.SetActive(true);
+        //Setting timer to 3 sec
+        _raceCountdownTimer = TIMETOCOUNTDOWN;
     }
 
     public void OnExit()
     {
-        Debug.Log("Race!");
-        _rm._RGUIC._countDownPanel.SetActive(false);
+
+        //close panel
+        _rm._RGUIC.countDownPanel.SetActive(false);
     }
 
     public void Tick()
@@ -38,6 +43,6 @@ public class CountdownStage : IState
     public void UpdateCountdownTimer()
     {
         _rm._RGUIC.UpdateCountdownTime(_raceCountdownTimer);
-        if(_raceCountdownTimer <= 1f) _rm._RGUIC._racePanel.SetActive(true);
+        if(_raceCountdownTimer <= 1f) _rm._RGUIC.racePanel.SetActive(true);
     }
 }

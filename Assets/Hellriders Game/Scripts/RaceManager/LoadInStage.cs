@@ -5,7 +5,9 @@ using UnityEngine;
 public class LoadInStage : IState
 {
     private RaceManager _rm;
-    public float _introCountdownTimer = 10f;
+
+    public float introCountdownTimer = 10f;
+    public float timeOutTimer = 30f;
 
     public LoadInStage(RaceManager rm)
     {
@@ -16,17 +18,19 @@ public class LoadInStage : IState
     {
         //check connections to server?
         Debug.Log("Checking connections...");
-        _rm._RGUIC._countDownPanel.SetActive(false);
-        _rm._RGUIC._racePanel.SetActive(false);
-        
+        //_rm._RGUIC.loadInPanel.SetActive(true);
+        //_rm._RGUIC.countDownPanel.SetActive(false);
+        //_rm._RGUIC.racePanel.SetActive(false);
+        //_rm._RGUIC.finishPanel.SetActive(false);
+
         //Set cameramode
         _rm._CMRC.OnLoadIn();
     }
 
     public void OnExit()
     {
-        Debug.Log("All players loaded");
-        _rm._RGUIC._countDownPanel.SetActive(true);
+        Debug.Log("All players loaded, intro done and ready to count down!");
+        _rm._RGUIC.loadInPanel.SetActive(false);
     }
 
     public void Tick()
@@ -34,7 +38,7 @@ public class LoadInStage : IState
         //check timeout for loading players.
         Debug.Log("Waiting for all players to load....");
 
-        _introCountdownTimer -= Time.deltaTime;
-
+        introCountdownTimer -= Time.deltaTime;
+        timeOutTimer -= Time.deltaTime;
     }
 }

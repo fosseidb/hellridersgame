@@ -18,7 +18,7 @@ public class CinemachineRaceController : MonoBehaviour
 
     public void OnLoadIn()
     {
-        animator.Play(LEVELINTRO);
+        //animator.Play(LEVELINTRO);
     }
 
     public void OnCountdown()

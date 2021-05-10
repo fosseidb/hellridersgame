@@ -37,15 +37,6 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
-    "com.unity.collab-proxy": {
-      "version": "1.5.7",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.nuget.newtonsoft-json": "2.0.0"
-      },
-      "url": "https://packages.unity.com"
-    },
     "com.unity.connect.share": {
       "version": "4.1.1",
       "depth": 0,
@@ -124,13 +115,6 @@
         "com.unity.modules.physics2d": "1.0.0",
         "com.unity.modules.unityanalytics": "1.0.0"
       },
-      "url": "https://packages.unity.com"
-    },
-    "com.unity.nuget.newtonsoft-json": {
-      "version": "2.0.0",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {},
       "url": "https://packages.unity.com"
     },
     "com.unity.postprocessing": {

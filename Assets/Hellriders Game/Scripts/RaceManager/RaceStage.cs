@@ -12,20 +12,22 @@ public class RaceStage : IState
     }
     public void OnEnter()
     {
-        //Set cameramode
+        //Set correct panel
+        _rm._RGUIC.racePanel.gameObject.SetActive(true);
 
-        _raceTimer = 0f;
-        _rm._RGUIC._raceTimer.gameObject.SetActive(true);
+        //clear timer
+        _rm.raceTimer = 0f;
     }
 
     public void OnExit()
     {
-        _rm._RGUIC._raceTimer.gameObject.SetActive(false);
+        //set correct panel
+        _rm._RGUIC.racePanel.gameObject.SetActive(false);
     }
 
     public void Tick()
     {
-        _raceTimer += Time.deltaTime;
+        _rm.raceTimer += Time.deltaTime;
         UpdateUITimer();
     }
 

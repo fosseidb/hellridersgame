@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RaceManager : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class RaceManager : MonoBehaviour
     public GameObject[] _hellriderLonglist;
 
     [Header("Race Map related")]
+    public int raceLevelID;
     public Transform _player1SpawnPoint;
     public FinishLine _finishLine;
 
@@ -20,22 +22,32 @@ public class RaceManager : MonoBehaviour
     private StateMachine _stateMachine;
 
     //Stage 1 
-    [Header("Stage 1")]
+    [Header("Stage 1 - load in")]
     public int _noLoadedPlayers;
     public int _noTotalPlayersInRace;
 
-    //stage 2
+    //state 2 - countdown
 
     //stage 3
+    [Header("Stage 3 - Race")]
+    public float raceTimer;
+
+    //stage 4
+    [Header("Stage 4 - Finish")]
+    public Dictionary<Hellrider, float> finishRoster = new Dictionary<Hellrider, float>();
     private bool _finished;
+    private float _finishTime;
 
 
     private void Awake()
     {
-        _stateMachine = new StateMachine();
+        //find and connect the finish line to the Race Manager.
         _finishLine.OnCrossFinishLine += HandlePlayerCrossesFinishLine;
+        
+        //initialize the statemachine controlling the major race states.
+        _stateMachine = new StateMachine();
 
-        //create stages
+        //create stages for the state machine.
         var loadIn = new LoadInStage(this);
         var countdown = new CountdownStage(this);
         var race = new RaceStage(this);
@@ -55,7 +67,7 @@ public class RaceManager : MonoBehaviour
             _stateMachine.AddTransition(from, to, condition);
 
         //condition functions
-        Func<bool> AllPlayersLoaded() => () => _noLoadedPlayers == _noTotalPlayersInRace && loadIn._introCountdownTimer <= 0f;
+        Func<bool> AllPlayersLoaded() => () => _noLoadedPlayers == _noTotalPlayersInRace && loadIn.introCountdownTimer <= 0f;
         Func<bool> BeginRace() => () => countdown._raceCountdownTimer <= 0f;
         Func<bool> FinishRace() => () => _finished == true;
 
@@ -70,11 +82,11 @@ public class RaceManager : MonoBehaviour
         _RGUIC = FindObjectOfType<RaceGUIController>();
         _hellrider = FindObjectOfType<Hellrider>();
 
-        print("SelectedLevel: "+ PlayerPrefs.GetInt("selectedLevel"));
-        print("SelectedCar: " + PlayerPrefs.GetInt("car"));
-        print("SelectedHPF: " + PlayerPrefs.GetInt("frontHP"));
-        print("SelectedHPT: " + PlayerPrefs.GetInt("topHP"));
-        print("SelectedHPU: " + PlayerPrefs.GetInt("utilHP"));
+        //print("SelectedLevel: "+ PlayerPrefs.GetInt("selectedLevel"));
+        //print("SelectedCar: " + PlayerPrefs.GetInt("car"));
+        //print("SelectedHPF: " + PlayerPrefs.GetInt("frontHP"));
+        //print("SelectedHPT: " + PlayerPrefs.GetInt("topHP"));
+        //print("SelectedHPU: " + PlayerPrefs.GetInt("utilHP"));
 
         SpawnPlayer();
     }
@@ -102,6 +114,32 @@ public class RaceManager : MonoBehaviour
     private void HandlePlayerCrossesFinishLine(GameObject hellrider)
     {
         Debug.Log("Rider crosses finish line!");
+
+        //register rider
+        Hellrider finishedHellrider = hellrider.GetComponent<Hellrider>();
+        _finishTime = raceTimer;
+        finishRoster.Add(finishedHellrider, _finishTime);
+
+        //trigger next stage
         _finished = true;
+    }
+
+    public void CloseRace()
+    {
+        //If we wont his race
+        CheckIfTimeGoodEnoughToCompleteRace();
+
+        //if this is a new achievment, store this race as latest completed race to unlock next.
+        if(PlayerPrefs.GetInt("latestLevel") < raceLevelID)
+            PlayerPrefs.SetInt("latestLevel", raceLevelID);
+
+        //load main menu
+        SceneManager.LoadScene(0);
+
+    }
+
+    private void CheckIfTimeGoodEnoughToCompleteRace()
+    {
+        
     }
 }
