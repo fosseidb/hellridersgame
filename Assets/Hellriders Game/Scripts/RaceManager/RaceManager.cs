@@ -15,6 +15,7 @@ public class RaceManager : MonoBehaviour
 
     [Header("Race Map related")]
     public int raceLevelID;
+    public string raceLevelName;
     public Transform _player1SpawnPoint;
     public FinishLine _finishLine;
 
@@ -80,7 +81,7 @@ public class RaceManager : MonoBehaviour
     {
 
         _RGUIC = FindObjectOfType<RaceGUIController>();
-        _hellrider = FindObjectOfType<Hellrider>();
+        //_hellrider = FindObjectOfType<Hellrider>();
 
         //print("SelectedLevel: "+ PlayerPrefs.GetInt("selectedLevel"));
         //print("SelectedCar: " + PlayerPrefs.GetInt("car"));
@@ -101,6 +102,7 @@ public class RaceManager : MonoBehaviour
 
         //Add all components to vehicle
         VehicleUserController vuc = _hellrider.gameObject.AddComponent(typeof(VehicleUserController)) as VehicleUserController;
+        GiveHellridersUserControlAccess(_hellrider, false);
         TurretController tc = _hellrider.gameObject.AddComponent(typeof(TurretController)) as TurretController;
         FallOffTrackRespawner fotr = _hellrider.gameObject.AddComponent(typeof(FallOffTrackRespawner)) as FallOffTrackRespawner;
         
@@ -140,6 +142,26 @@ public class RaceManager : MonoBehaviour
 
     private void CheckIfTimeGoodEnoughToCompleteRace()
     {
-        
+        //checking
+        Debug.Log("Checking if good enough");
+    }
+
+    public void SetMouseLock(bool toBeLocked)
+    {
+        if (toBeLocked)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+    }
+
+    public void GiveHellridersUserControlAccess(Hellrider hellrider, bool access)
+    {
+        hellrider.GetComponent<VehicleUserController>().GiveHellriderUserControllAccess(access);
     }
 }

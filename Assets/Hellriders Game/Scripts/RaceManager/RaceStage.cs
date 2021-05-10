@@ -17,6 +17,9 @@ public class RaceStage : IState
 
         //clear timer
         _rm.raceTimer = 0f;
+
+        // give all drivers user acces
+        _rm.GiveHellridersUserControlAccess(_rm._hellrider, true);
     }
 
     public void OnExit()

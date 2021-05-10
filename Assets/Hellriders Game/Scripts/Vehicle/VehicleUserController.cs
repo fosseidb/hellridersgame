@@ -7,24 +7,28 @@ public class VehicleUserController : MonoBehaviour
 {
     private const string HORIZONTAL = "Horizontal";
     private const string VERTICAL = "Vertical";
+    private bool _userControlEngaged = false;
+
     private VehicleController _vehicleController;
 
     private Quaternion camRotation;
-
     Camera _mainCamera;
 
     private void Awake()
     {
+        //get the vehicle controller
         _vehicleController = GetComponent<VehicleController>();
-        camRotation = Camera.main.transform.localRotation;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
 
+        //connect camera
+        camRotation = Camera.main.transform.localRotation;
         _mainCamera = Camera.main;
     }
 
     private void FixedUpdate()
     {
+        if (!_userControlEngaged)
+            return;
+
         // pass the input to the vehicle! Check Standard Assets pack for MultiInputManager script.
         float h = Input.GetAxis(HORIZONTAL);
         float v = Input.GetAxis(VERTICAL);
@@ -34,6 +38,11 @@ public class VehicleUserController : MonoBehaviour
 #else
             m_Car.Move(h, v, v, 0f);
 #endif
+    }
+
+    public void GiveHellriderUserControllAccess(bool access)
+    {
+        _userControlEngaged = access;
     }
 }
 

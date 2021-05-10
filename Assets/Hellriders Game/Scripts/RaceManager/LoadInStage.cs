@@ -16,12 +16,19 @@ public class LoadInStage : IState
 
     public void OnEnter()
     {
+
+        //set mout lock
+        _rm.SetMouseLock(true);
+
         //check connections to server?
         Debug.Log("Checking connections...");
-        //_rm._RGUIC.loadInPanel.SetActive(true);
-        //_rm._RGUIC.countDownPanel.SetActive(false);
-        //_rm._RGUIC.racePanel.SetActive(false);
-        //_rm._RGUIC.finishPanel.SetActive(false);
+        _rm._RGUIC.loadInPanel.SetActive(true);
+        _rm._RGUIC.levelName.text = "Welcome to "+ _rm.raceLevelName + "!";
+
+
+        _rm._RGUIC.countDownPanel.SetActive(false);
+        _rm._RGUIC.racePanel.SetActive(false);
+        _rm._RGUIC.finishPanel.SetActive(false);
 
         //Set cameramode
         _rm._CMRC.OnLoadIn();

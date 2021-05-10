@@ -14,6 +14,9 @@ public class FinishStage : IState
 
     public void OnEnter()
     {
+        //set mouse lock
+        _rm.SetMouseLock(false);
+
         //Set cameramode
         _rm._CMRC.OnFinishRace();
 

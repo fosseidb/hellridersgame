@@ -6,8 +6,9 @@ using UnityEngine;
 public class RaceGUIController : MonoBehaviour
 {
 
-    public TMP_Text _raceTimer;
-    public TMP_Text _countDownTimer;
+    public TMP_Text raceTimer;
+    public TMP_Text countDownTimer;
+    public TMP_Text levelName;
 
     [Header("Panels")]
     public GameObject loadInPanel;
@@ -21,13 +22,13 @@ public class RaceGUIController : MonoBehaviour
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
         float milliSeconds = (timeToDisplay % 1) * 1000;
 
-        _raceTimer.text = string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, milliSeconds);
+        raceTimer.text = string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, milliSeconds);
     }
 
     public void UpdateCountdownTime(float timeToDisplay)
     {
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
 
-        _countDownTimer.text = seconds.ToString();
+        countDownTimer.text = seconds.ToString();
     }
 }
