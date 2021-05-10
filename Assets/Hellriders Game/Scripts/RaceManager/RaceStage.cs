@@ -5,7 +5,7 @@ using UnityEngine;
 public class RaceStage : IState
 {
     private RaceManager _rm;
-    private float _raceTimer;
+    //private float _raceTimer;
     public RaceStage(RaceManager rm)
     {
         _rm = rm;
@@ -36,6 +36,6 @@ public class RaceStage : IState
 
     public void UpdateUITimer()
     {
-        _rm._RGUIC.UpdateRaceTime(_raceTimer);
+        _rm._RGUIC.UpdateRaceTime(_rm.raceTimer);
     }
 }

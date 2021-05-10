@@ -17,10 +17,10 @@ public class MainMenuManager : MonoBehaviour
 
     private void Start()
     {
-        //GUI Page Set up
+        //GUI Page Set up correct page
         _gUIMainMenu.SelectPage(0);
 
-        // Hellrider Setup
+        // Hellrider Setup - if the player already has a preferred car selceted select this, else go for default setup
         if(PlayerPrefs.GetInt("hasSaved") == 0)
             _selectedSetup = new int[] { 0, 0, 0, 0 };
         else
@@ -28,25 +28,35 @@ public class MainMenuManager : MonoBehaviour
         OnSelectCarClick(_selectedSetup[0]);
         Debug.Log("Playerprefs: " + PlayerPrefs.GetInt("car") + PlayerPrefs.GetInt("frontHP") + PlayerPrefs.GetInt("topHP") + PlayerPrefs.GetInt("utilHP"));
 
-        // Level Setup
+        // Level Setup - check what the latest level the player has played and unlock these and then select level 0
         _latestUnlockedLevel = PlayerPrefs.HasKey("latestLevel") ? PlayerPrefs.GetInt("latestLevel") : 4;
         UnlockLevels();
         SelectLevel(0);
     }
 
-
+    /// <summary>
+    /// Unlocks the levels that are stored as unlocked in player prefs.
+    /// </summary>
     private void UnlockLevels()
     {
         Debug.Log("MMM Unlocking levels: " + _latestUnlockedLevel);
         _gUIMainMenu.UnlockLevels(_latestUnlockedLevel);
     }
 
+    /// <summary>
+    /// Selects the level to be highlighted.
+    /// </summary>
+    /// <param name="i"> integer for level to be selected </param>
     public void SelectLevel(int i)
     {
         _selectedLevel = i;
         _gUIMainMenu.SetHighlightedLevel(i);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="activeCarIndex">The index of the active car</param>
     public void OnSelectCarClick(int activeCarIndex)
     {
         _selectedSetup[0] = activeCarIndex;
