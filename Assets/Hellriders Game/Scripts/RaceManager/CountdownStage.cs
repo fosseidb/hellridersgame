@@ -18,10 +18,10 @@ public class CountdownStage : IState
     {
        
         // set correct panel
-        _rm._RGUIC.countDownPanel.SetActive(true);
+        _rm._raceGUIController.countDownPanel.SetActive(true);
 
         //Set cameramode
-        _rm._CMRC.OnRaceStart();
+        _rm._cinemachineRaceController.OnRaceStart();
 
         //Setting timer to 3 sec
         _raceCountdownTimer = TIMETOCOUNTDOWN;
@@ -31,7 +31,7 @@ public class CountdownStage : IState
     {
 
         //close panel
-        _rm._RGUIC.countDownPanel.SetActive(false);
+        _rm._raceGUIController.countDownPanel.SetActive(false);
     }
 
     public void Tick()
@@ -42,7 +42,7 @@ public class CountdownStage : IState
 
     public void UpdateCountdownTimer()
     {
-        _rm._RGUIC.UpdateCountdownTime(_raceCountdownTimer);
-        if(_raceCountdownTimer <= 1f) _rm._RGUIC.racePanel.SetActive(true);
+        _rm._raceGUIController.UpdateCountdownTime(_raceCountdownTimer);
+        if(_raceCountdownTimer <= 1f) _rm._raceGUIController.racePanel.SetActive(true);
     }
 }

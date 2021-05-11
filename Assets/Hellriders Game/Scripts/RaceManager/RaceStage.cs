@@ -13,7 +13,8 @@ public class RaceStage : IState
     public void OnEnter()
     {
         //Set correct panel
-        _rm._RGUIC.racePanel.gameObject.SetActive(true);
+        //_rm._raceGUIController.racePanel.gameObject.SetActive(true);
+        _rm._raceGUIController.SetUniquePanel(2);
 
         //clear timer
         _rm.raceTimer = 0f;
@@ -25,7 +26,7 @@ public class RaceStage : IState
     public void OnExit()
     {
         //set correct panel
-        _rm._RGUIC.racePanel.gameObject.SetActive(false);
+        _rm._raceGUIController.racePanel.gameObject.SetActive(false);
     }
 
     public void Tick()
@@ -36,6 +37,6 @@ public class RaceStage : IState
 
     public void UpdateUITimer()
     {
-        _rm._RGUIC.UpdateRaceTime(_rm.raceTimer);
+        _rm._raceGUIController.UpdateRaceTime(_rm.raceTimer);
     }
 }

@@ -9,9 +9,10 @@ public class LoadInStage : IState
     public float introCountdownTimer = 10f;
     public float timeOutTimer = 30f;
 
-    public LoadInStage(RaceManager rm)
+    public LoadInStage(RaceManager rm, float introTimer)
     {
         _rm = rm;
+        introCountdownTimer = introTimer;
     }
 
     public void OnEnter()
@@ -22,22 +23,23 @@ public class LoadInStage : IState
 
         //check connections to server?
         Debug.Log("Checking connections...");
-        _rm._RGUIC.loadInPanel.SetActive(true);
-        _rm._RGUIC.levelName.text = "Welcome to "+ _rm.raceLevelName + "!";
+        //_rm._raceGUIController.loadInPanel.SetActive(true);
+        _rm._raceGUIController.SetUniquePanel(0);
+        _rm._raceGUIController.levelName.text = "Welcome to "+ _rm.raceLevelName + "!";
 
 
-        _rm._RGUIC.countDownPanel.SetActive(false);
-        _rm._RGUIC.racePanel.SetActive(false);
-        _rm._RGUIC.finishPanel.SetActive(false);
+        //_rm._raceGUIController.countDownPanel.SetActive(false);
+        //_rm._raceGUIController.racePanel.SetActive(false);
+        //_rm._raceGUIController.finishPanel.SetActive(false);
 
         //Set cameramode
-        _rm._CMRC.OnLoadIn();
+        _rm._cinemachineRaceController.OnLoadIn();
     }
 
     public void OnExit()
     {
         Debug.Log("All players loaded, intro done and ready to count down!");
-        _rm._RGUIC.loadInPanel.SetActive(false);
+        _rm._raceGUIController.loadInPanel.SetActive(false);
     }
 
     public void Tick()

@@ -6,8 +6,10 @@ using UnityEngine.SceneManagement;
 public class RaceManager : MonoBehaviour
 {
     [Header("GUI & Camera")]
-    public RaceGUIController _RGUIC;
-    public CinemachineRaceController _CMRC;
+    public RaceGUIController _raceGUIController;
+    public CinemachineRaceController _cinemachineRaceController;
+    public bool playIntro = true;
+    public float introTimer = 10f;
 
     [Header("Hellrider")]
     public Hellrider _hellrider;
@@ -40,7 +42,7 @@ public class RaceManager : MonoBehaviour
     private float _finishTime;
 
 
-    private void Awake()
+    private void Start()
     {
         //find and connect the finish line to the Race Manager.
         _finishLine.OnCrossFinishLine += HandlePlayerCrossesFinishLine;
@@ -48,8 +50,12 @@ public class RaceManager : MonoBehaviour
         //initialize the statemachine controlling the major race states.
         _stateMachine = new StateMachine();
 
+        //check if want to play load in intro
+        if (!playIntro)
+            introTimer = 0f;
+
         //create stages for the state machine.
-        var loadIn = new LoadInStage(this);
+        var loadIn = new LoadInStage(this, introTimer);
         var countdown = new CountdownStage(this);
         var race = new RaceStage(this);
         var finish = new FinishStage(this);
@@ -61,8 +67,6 @@ public class RaceManager : MonoBehaviour
 
         //Connect "From any State" transitions
 
-        //Set initial state
-        _stateMachine.SetState(loadIn);
 
         void At(IState from, IState to, Func<bool> condition) =>
             _stateMachine.AddTransition(from, to, condition);
@@ -72,25 +76,29 @@ public class RaceManager : MonoBehaviour
         Func<bool> BeginRace() => () => countdown._raceCountdownTimer <= 0f;
         Func<bool> FinishRace() => () => _finished == true;
 
+        _raceGUIController = FindObjectOfType<RaceGUIController>();
+        SpawnPlayer();
+
+        
+        //Set initial state
+        _stateMachine.SetState(loadIn); 
     }
 
     private void Update() => _stateMachine.Tick();
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    //// Start is called before the first frame update
+    //void Start()
+    //{
 
-        _RGUIC = FindObjectOfType<RaceGUIController>();
-        //_hellrider = FindObjectOfType<Hellrider>();
+    //    //_hellrider = FindObjectOfType<Hellrider>();
 
-        //print("SelectedLevel: "+ PlayerPrefs.GetInt("selectedLevel"));
-        //print("SelectedCar: " + PlayerPrefs.GetInt("car"));
-        //print("SelectedHPF: " + PlayerPrefs.GetInt("frontHP"));
-        //print("SelectedHPT: " + PlayerPrefs.GetInt("topHP"));
-        //print("SelectedHPU: " + PlayerPrefs.GetInt("utilHP"));
+    //    //print("SelectedLevel: "+ PlayerPrefs.GetInt("selectedLevel"));
+    //    //print("SelectedCar: " + PlayerPrefs.GetInt("car"));
+    //    //print("SelectedHPF: " + PlayerPrefs.GetInt("frontHP"));
+    //    //print("SelectedHPT: " + PlayerPrefs.GetInt("topHP"));
+    //    //print("SelectedHPU: " + PlayerPrefs.GetInt("utilHP"));
 
-        SpawnPlayer();
-    }
+    //}
 
     public void SpawnPlayer()
     {
@@ -108,6 +116,9 @@ public class RaceManager : MonoBehaviour
         
         //place vehicle on spawnpoint
         fotr._initialRespawnPoint = _player1SpawnPoint;
+
+        //if local player, hook up GUI
+        _raceGUIController.HookUpGUI(_hellrider);
 
         //update number of loaded players
         _noLoadedPlayers++;

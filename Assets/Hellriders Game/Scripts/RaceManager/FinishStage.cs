@@ -18,15 +18,15 @@ public class FinishStage : IState
         _rm.SetMouseLock(false);
 
         //Set cameramode
-        _rm._CMRC.OnFinishRace();
+        _rm._cinemachineRaceController.OnFinishRace();
 
         //show Finish race panel GUI
-        _rm._RGUIC.finishPanel.SetActive(true);
+        _rm._raceGUIController.finishPanel.SetActive(true);
     }
 
     public void OnExit()
     {
-        _rm._RGUIC.finishPanel.SetActive(false);
+        _rm._raceGUIController.finishPanel.SetActive(false);
     }
 
     public void Tick()

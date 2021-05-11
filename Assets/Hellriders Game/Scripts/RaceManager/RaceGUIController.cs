@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -16,6 +17,22 @@ public class RaceGUIController : MonoBehaviour
     public GameObject racePanel;
     public GameObject finishPanel;
 
+    [Header("Dashboard")]
+    private Hellrider _hellrider;
+    public TMP_Text revText;
+    public TMP_Text currentSpeedText;
+    public TMP_Text gearNumText;
+
+    private void FixedUpdate()
+    {
+        if (_hellrider == null)
+            return;
+
+        currentSpeedText.text = Mathf.Floor(_hellrider.GetComponent<VehicleController>().CurrentSpeed).ToString() + " km/h";
+        revText.text = Mathf.Floor(_hellrider.GetComponent<VehicleController>().Revs*1000).ToString() + " rpm";
+        gearNumText.text = "["+ _hellrider.GetComponent<VehicleController>().GearNum.ToString() + "]";
+
+    }
     public void UpdateRaceTime(float timeToDisplay)
     {
         float minutes = Mathf.FloorToInt(timeToDisplay / 60);
@@ -30,5 +47,18 @@ public class RaceGUIController : MonoBehaviour
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
 
         countDownTimer.text = seconds.ToString();
+    }
+
+    internal void HookUpGUI(Hellrider hellrider)
+    {
+        _hellrider = hellrider;
+    }
+
+    public void SetUniquePanel(int i)
+    {
+        loadInPanel.SetActive(i == 0);
+        countDownPanel.SetActive(i == 1);
+        racePanel.SetActive(i == 2);
+        finishPanel.SetActive(i == 3);
     }
 }
