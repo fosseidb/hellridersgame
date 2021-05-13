@@ -7,13 +7,6 @@ public class RespawnCheckpoint : MonoBehaviour
 
     [SerializeField] private float _heightOffRoad = 1f;
 
-    //private void OnDrawGizmos()
-    //{
-    //    //Debug.DrawRay(transform.position, transform.TransformDirection(-Vector3.up)* _heightOffRoad, Color.red);
-    //    Gizmos.color = Color.blue;
-    //    Gizmos.DrawLine(transform.position, transform.position - Vector3.up * _heightOffRoad);
-    //}
-
     private bool IsGrounded
     {
         get => Physics.Raycast(GroundRay, _heightOffRoad);

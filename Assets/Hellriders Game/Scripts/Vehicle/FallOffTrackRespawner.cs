@@ -5,7 +5,7 @@ using UnityEngine;
 public class FallOffTrackRespawner : MonoBehaviour
 {
     [Range(0.1f,4f)]
-    private float _acceptableFallingTime = 2f;
+    private float _acceptableFallingTime = 3f;
     private float fallingTimer;
     private LayerMask _layerMask;
 
@@ -43,7 +43,7 @@ public class FallOffTrackRespawner : MonoBehaviour
         return false;
     }
 
-    private void RespawnFromFall()
+    public void RespawnFromFall()
     {
         transform.position = _respawnPoint.position+Vector3.up*0.2f;
         transform.rotation = _respawnPoint.rotation;
