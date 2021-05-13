@@ -16,12 +16,12 @@ MonoBehaviour:
   m_AdvancedMode: 0
   temperature:
     m_OverrideState: 1
-    m_Value: 49.7
+    m_Value: 18.9
     min: -100
     max: 100
   tint:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: -23.1
     min: -100
     max: 100
 --- !u!114 &-4298168657323604774
@@ -43,7 +43,7 @@ MonoBehaviour:
     m_Value: 1
   contrast:
     m_OverrideState: 1
-    m_Value: 13.7
+    m_Value: 25.7
     min: -100
     max: 100
   colorFilter:

@@ -45,9 +45,12 @@ public class FallOffTrackRespawner : MonoBehaviour
 
     public void RespawnFromFall()
     {
+        Rigidbody rb = GetComponent<Rigidbody>();
+        rb.Sleep();
         transform.position = _respawnPoint.position+Vector3.up*0.2f;
         transform.rotation = _respawnPoint.rotation;
-        GetComponent<Rigidbody>().velocity = new Vector3(1,1,0);
+        rb.WakeUp();
+        rb.velocity = new Vector3(1,1,0);
         Camera.main.transform.rotation = _respawnPoint.rotation;
     }
 
