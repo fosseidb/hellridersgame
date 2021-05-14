@@ -23,6 +23,10 @@ public class RaceGUIController : MonoBehaviour
     public TMP_Text currentSpeedText;
     public TMP_Text gearNumText;
 
+    [Header("FinishRoster")]
+    public GameObject rosterContainer;
+    public GameObject hellriderPlacingRowPrefab;
+
     private void FixedUpdate()
     {
         if (_hellrider == null)
@@ -60,5 +64,50 @@ public class RaceGUIController : MonoBehaviour
         countDownPanel.SetActive(i == 1);
         racePanel.SetActive(i == 2);
         finishPanel.SetActive(i == 3);
+    }
+
+    internal void UpdateFinishRoster(List<RacePositionData> roster)
+    {
+
+        HellriderPlacingRow[] positionRows = rosterContainer.transform.GetComponentsInChildren<HellriderPlacingRow>();
+
+        Debug.Log("positionRows" + positionRows.Length);
+        RacePositionData[] currentRoster = roster.ToArray();
+        Debug.Log("currentRoster" + currentRoster.Length);
+
+        for (int i=0; i < roster.Count; i++)
+        {
+            if (positionRows[i] != null)
+            {
+                positionRows[i].FillIn(
+                    currentRoster[i].positionNr,
+                    currentRoster[i].hellrider.icon,
+                    currentRoster[i].playerName,
+                    ConvertToRaceTime(currentRoster[i].finishTime)
+                    );
+            }
+            else
+            {
+                GameObject hellriderRow = Instantiate(
+                    hellriderPlacingRowPrefab,
+                    rosterContainer.transform);
+
+                hellriderRow.GetComponent<HellriderPlacingRow>().FillIn(
+                    currentRoster[i].positionNr,
+                    currentRoster[i].hellrider.icon,
+                    currentRoster[i].playerName,
+                    ConvertToRaceTime(currentRoster[i].finishTime)
+                    );
+            }
+        }
+    }
+
+    private string ConvertToRaceTime(float finishTime)
+    {
+        float minutes = Mathf.FloorToInt(finishTime / 60);
+        float seconds = Mathf.FloorToInt(finishTime % 60);
+        float milliSeconds = (finishTime % 1) * 1000;
+
+        return string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, milliSeconds);
     }
 }

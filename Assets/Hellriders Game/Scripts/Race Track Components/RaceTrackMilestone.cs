@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RespawnCheckpoint : MonoBehaviour
+public class RaceTrackMilestone : MonoBehaviour
 {
+    public int milestoneID;
+    public bool isFinishline;
 
     [SerializeField] private float _heightOffRoad = 1f;
 

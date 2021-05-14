@@ -14,6 +14,9 @@ public class FallOffTrackRespawner : MonoBehaviour
     public Transform _initialRespawnPoint;
     private Transform _respawnPoint;
 
+    public delegate void MilestoneCrossedEvent(Player player, int milestoneID);
+    public event MilestoneCrossedEvent OnMilestonePassed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -59,6 +62,7 @@ public class FallOffTrackRespawner : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("RespawnCheckpoint"))
         {
             _respawnPoint = other.transform;
+            OnMilestonePassed?.Invoke(GetComponent<Player>(), other.GetComponent<RaceTrackMilestone>().milestoneID);
         }
     }
 }

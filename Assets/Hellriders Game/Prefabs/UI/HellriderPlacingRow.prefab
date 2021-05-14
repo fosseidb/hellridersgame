@@ -491,8 +491,9 @@ GameObject:
   - component: {fileID: 2407759765178595771}
   - component: {fileID: 2407759765178595765}
   - component: {fileID: 2407759765178595764}
+  - component: {fileID: -3390845855104092054}
   m_Layer: 5
-  m_Name: HellriderPlacingPanel
+  m_Name: HellriderPlacingRow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -559,3 +560,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &-3390845855104092054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2407759765178595770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 834d0f7f79f4f2e4087db4ca5be625bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  finalposition: {fileID: 2407759764116244191}
+  driverIcon: {fileID: 2407759764258528055}
+  racerNameText: {fileID: 2407759763543021780}
+  finalTimeText: {fileID: 2407759763728393333}
