@@ -565,7 +565,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 1, z: -5}
+  m_FollowOffset: {x: 0, y: 2.5, z: -8}
   m_XDamping: 0
   m_YDamping: 0
   m_ZDamping: 0
@@ -1782,7 +1782,10 @@ MonoBehaviour:
   m_AnimatedTarget: {fileID: 409516258}
   m_LayerIndex: 0
   m_ShowDebugText: 0
-  m_ChildCameras: []
+  m_ChildCameras:
+  - {fileID: 1603752112}
+  - {fileID: 852913482}
+  - {fileID: 888926727}
   m_Instructions:
   - m_FullHash: -1749233203
     m_VirtualCamera: {fileID: 888926727}
@@ -4962,15 +4965,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1269838180923140849, guid: 034ac20d3f4341f4fbaf604c9cea1d67,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -2.5899658
+      objectReference: {fileID: 0}
     - target: {fileID: 1269838181259713558, guid: 034ac20d3f4341f4fbaf604c9cea1d67,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1269838181259713558, guid: 034ac20d3f4341f4fbaf604c9cea1d67,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1269838181413981721, guid: 034ac20d3f4341f4fbaf604c9cea1d67,
         type: 3}
@@ -4990,7 +4998,7 @@ PrefabInstance:
     - target: {fileID: 1269838181669875288, guid: 034ac20d3f4341f4fbaf604c9cea1d67,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1269838181669875292, guid: 034ac20d3f4341f4fbaf604c9cea1d67,
         type: 3}
@@ -5262,7 +5270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 1, z: -5}
+  m_FollowOffset: {x: 0, y: 2.5, z: -8}
   m_XDamping: 0
   m_YDamping: 0
   m_ZDamping: 0
@@ -6443,7 +6451,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 1, z: -5}
+  m_FollowOffset: {x: 0, y: 2.5, z: -8}
   m_XDamping: 0
   m_YDamping: 0
   m_ZDamping: 0
