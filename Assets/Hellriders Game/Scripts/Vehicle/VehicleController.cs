@@ -92,7 +92,7 @@ public class VehicleController : MonoBehaviour
         CalculateRevs();
         GearChanging();
 
-        AddDownForce();
+        //AddDownForce();
         //CheckForWheelSpein()
         TractionControl();
     }

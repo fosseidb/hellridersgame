@@ -49,11 +49,11 @@ public class FallOffTrackRespawner : MonoBehaviour
     public void RespawnFromFall()
     {
         Rigidbody rb = GetComponent<Rigidbody>();
-        rb.Sleep();
+        rb.isKinematic = true;
         transform.position = _respawnPoint.position+Vector3.up*0.2f;
         transform.rotation = _respawnPoint.rotation;
-        rb.WakeUp();
-        rb.velocity = new Vector3(1,1,0);
+        rb.isKinematic = false;
+        rb.AddForce(Vector3.forward);
         Camera.main.transform.rotation = _respawnPoint.rotation;
     }
 
