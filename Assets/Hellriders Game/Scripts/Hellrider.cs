@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Hellrider : MonoBehaviour
 {
+    public Sprite icon;
+
     [SerializeField] private GameObject _frontHardpoint;
     [SerializeField] private GameObject _topHardpoint;
     [SerializeField] private GameObject _utilHardpoint;

@@ -29,29 +29,29 @@ public class MainMenuManager : MonoBehaviour
         Debug.Log("Playerprefs: " + PlayerPrefs.GetInt("car") + PlayerPrefs.GetInt("frontHP") + PlayerPrefs.GetInt("topHP") + PlayerPrefs.GetInt("utilHP"));
 
         // Level Setup - check what the latest level the player has played and unlock these and then select level 0
-        _latestUnlockedLevel = PlayerPrefs.HasKey("latestLevel") ? PlayerPrefs.GetInt("latestLevel") : 4;
-        UnlockLevels();
-        SelectLevel(0);
+        //_latestUnlockedLevel = PlayerPrefs.HasKey("latestLevel") ? PlayerPrefs.GetInt("latestLevel") : 4;
+        //UnlockLevels();
+        //SelectLevel(0);
     }
 
     /// <summary>
     /// Unlocks the levels that are stored as unlocked in player prefs.
     /// </summary>
-    private void UnlockLevels()
-    {
-        Debug.Log("MMM Unlocking levels: " + _latestUnlockedLevel);
-        _gUIMainMenu.UnlockLevels(_latestUnlockedLevel);
-    }
+    //private void UnlockLevels()
+    //{
+    //    Debug.Log("MMM Unlocking levels: " + _latestUnlockedLevel);
+    //    _gUIMainMenu.UnlockLevels(_latestUnlockedLevel);
+    //}
 
     /// <summary>
     /// Selects the level to be highlighted.
     /// </summary>
     /// <param name="i"> integer for level to be selected </param>
-    public void SelectLevel(int i)
-    {
-        _selectedLevel = i;
-        _gUIMainMenu.SetHighlightedLevel(i);
-    }
+    //public void SelectLevel(int i)
+    //{
+    //    _selectedLevel = i;
+    //    _gUIMainMenu.SetHighlightedLevel(i);
+    //}
 
     /// <summary>
     /// 

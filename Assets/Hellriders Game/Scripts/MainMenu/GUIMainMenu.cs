@@ -22,43 +22,41 @@ public class GUIMainMenu : MonoBehaviour
     [SerializeField] private TMP_Dropdown[] _HardPointDropdowns;
 
     [Header("Levels")]
-    [SerializeField] private GameObject[] _levels;
-    [SerializeField] private TMP_Text _levelTitle;
-    [SerializeField] private TMP_Text _levelDescription;
-
-    #region Leveltitles and descriptions
-    private string[] _levelTitles;
-    private string[] _levelDescriptions;
-    private int _selectedLevel;
-    #endregion
+    [SerializeField] private LevelData[] levelData;
+    [SerializeField] private TMP_Text _levelNameText;
+    [SerializeField] private TMP_Text _leveldescriptionText;
+    [SerializeField] private Image _levelImage;
+    public GameObject levelButtonPrefab;
+    public GameObject levelButtonContentHolder;
+    private int _selectedLevel; 
 
     private void Awake()
     {
-        _levelTitles = new string[] { "Limbo", "Lust", "Gluttony", "Greed", "Anger", "Heresy", "Violence", "Fraud", "Treachery" };
-        _levelDescriptions = new string[] { "Limbo is a place where one waits to be judged.",
-            "Lust is a windy place where those who have carnally sinned never meet another.",
-            "Gluttony, a landscape of wasteful corpulence.",
-            "Greed, not all that glitters is gold, but all of it burdens.",
-            "Anger leads to hate and hate leads to the dark side.",
-            "Heresy, the sin of thinking differently. An open mind is like a fortress with its gates unbarred.",
-            "Violence and death goes hand in hand",
-            "Fraud deciet and lies is the venom that drips from split toungues.",
-            "Treachery, to betray ones own is the darkest sin of all."
-        };
-        _selectedLevel = 0;
-    }
+        foreach (LevelData level in levelData) {
+            //instantiate level button and place in (set parent) the contentholder. Since the content holder has a grid greoup laoyt component i dont need to think about position.
+            GameObject levelButtonObject = Instantiate(
+                levelButtonPrefab, 
+                levelButtonContentHolder.transform);
 
+            LevelButton lvlBtn = levelButtonObject.GetComponent<LevelButton>();
+            lvlBtn.FillButton(level);
+            lvlBtn.OnThisLevelClicked += SetSelectedLevel;
 
-
-    private void FixedUpdate()
-    {
-        for (int i = 0; i < _levels.Length; i++)
-        {
-            if (_selectedLevel == i)
-            {
-                _levels[i].GetComponent<Button>().Select();
-            }
         }
+
+        //_levelTitles = new string[] { "Limbo", "Lust", "Gluttony", "Greed", "Anger", "Heresy", "Violence", "Fraud", "Treachery" };
+        //_levelDescriptions = new string[] { "Limbo is a place where one waits to be judged.",
+        //    "Lust is a windy place where those who have carnally sinned never meet another.",
+        //    "Gluttony, a landscape of wasteful corpulence.",
+        //    "Greed, not all that glitters is gold, but all of it burdens.",
+        //    "Anger leads to hate and hate leads to the dark side.",
+        //    "Heresy, the sin of thinking differently. An open mind is like a fortress with its gates unbarred.",
+        //    "Violence and death goes hand in hand",
+        //    "Fraud deciet and lies is the venom that drips from split toungues.",
+        //    "Treachery, to betray ones own is the darkest sin of all."
+        //};
+
+        SetSelectedLevel(levelData[0]);
     }
 
 
@@ -106,24 +104,13 @@ public class GUIMainMenu : MonoBehaviour
         }
     }
 
-    public void UnlockLevels(int latestLevel)
+    public void SetSelectedLevel(LevelData lvlData)
     {
-        Debug.Log("GUI Unlocking levels: " + latestLevel);
-        for (int i = 0; i < _levels.Length; i++)
-        {
-            _levels[i].GetComponent<Button>().interactable = i <= latestLevel;
-            Debug.Log("interactable: " + _levels[i].GetComponent<Button>().interactable);
-            _levels[i].GetComponentsInChildren<Image>()[1].enabled = i > latestLevel;
-            Debug.Log("chains enabled: " + _levels[i].GetComponentsInChildren<Image>()[1].enabled);
-        }
-    }
-
-    public void SetHighlightedLevel(int level)
-    {
-        _selectedLevel = level;
-        _levels[level].GetComponent<Button>().Select();
-        _levelTitle.text = _levelTitles[level];
-        _levelDescription.text = _levelDescriptions[level];
+        Debug.Log("SetSelectedLevel triggered in GUI" + lvlData.levelID);
+        _selectedLevel = lvlData.levelID;
+        _levelNameText.text = lvlData.levelName;
+        _leveldescriptionText.text = lvlData.levelDescription;
+        _levelImage.sprite = lvlData.levelWallpaper;
     }
 
     public void QuitGame()

@@ -2,15 +2,17 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class RaceManager : MonoBehaviour
 {
     [Header("GUI & Camera")]
-    public RaceGUIController _RGUIC;
-    public CinemachineRaceController _CMRC;
+    public RaceGUIController _raceGUIController;
+    public CinemachineRaceController _cinemachineRaceController;
+    public bool playIntro = true;
+    public float introTimer = 10f;
 
-    [Header("Hellrider")]
-    public Hellrider _hellrider;
+    [Header("Hellriders")]
     public GameObject[] _hellriderLonglist;
 
     [Header("Race Map related")]
@@ -26,21 +28,24 @@ public class RaceManager : MonoBehaviour
     [Header("Stage 1 - load in")]
     public int _noLoadedPlayers;
     public int _noTotalPlayersInRace;
+    public Player _localHellriderPlayer;
 
     //state 2 - countdown
 
     //stage 3
     [Header("Stage 3 - Race")]
     public float raceTimer;
+    //public Dictionary<int, Player> players;
+    public List<Player> players;
 
     //stage 4
     [Header("Stage 4 - Finish")]
-    public Dictionary<Hellrider, float> finishRoster = new Dictionary<Hellrider, float>();
-    private bool _finished;
+    public List<RacePositionData> racePositions;
+    private bool _raceFinished;
     private float _finishTime;
 
 
-    private void Awake()
+    private void Start()
     {
         //find and connect the finish line to the Race Manager.
         _finishLine.OnCrossFinishLine += HandlePlayerCrossesFinishLine;
@@ -48,8 +53,12 @@ public class RaceManager : MonoBehaviour
         //initialize the statemachine controlling the major race states.
         _stateMachine = new StateMachine();
 
+        //check if want to play load in intro
+        if (!playIntro)
+            introTimer = 0f;
+
         //create stages for the state machine.
-        var loadIn = new LoadInStage(this);
+        var loadIn = new LoadInStage(this, introTimer);
         var countdown = new CountdownStage(this);
         var race = new RaceStage(this);
         var finish = new FinishStage(this);
@@ -61,8 +70,6 @@ public class RaceManager : MonoBehaviour
 
         //Connect "From any State" transitions
 
-        //Set initial state
-        _stateMachine.SetState(loadIn);
 
         void At(IState from, IState to, Func<bool> condition) =>
             _stateMachine.AddTransition(from, to, condition);
@@ -70,27 +77,34 @@ public class RaceManager : MonoBehaviour
         //condition functions
         Func<bool> AllPlayersLoaded() => () => _noLoadedPlayers == _noTotalPlayersInRace && loadIn.introCountdownTimer <= 0f;
         Func<bool> BeginRace() => () => countdown._raceCountdownTimer <= 0f;
-        Func<bool> FinishRace() => () => _finished == true;
+        Func<bool> FinishRace() => () => _raceFinished == true;
 
+        //connect GUI system
+        _raceGUIController = FindObjectOfType<RaceGUIController>();
+
+        //spawn players
+        players = new List<Player>();
+        SpawnPlayer();
+        
+        //Set initial state
+        _stateMachine.SetState(loadIn); 
     }
 
     private void Update() => _stateMachine.Tick();
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    //// Start is called before the first frame update
+    //void Start()
+    //{
 
-        _RGUIC = FindObjectOfType<RaceGUIController>();
-        //_hellrider = FindObjectOfType<Hellrider>();
+    //    //_hellrider = FindObjectOfType<Hellrider>();
 
-        //print("SelectedLevel: "+ PlayerPrefs.GetInt("selectedLevel"));
-        //print("SelectedCar: " + PlayerPrefs.GetInt("car"));
-        //print("SelectedHPF: " + PlayerPrefs.GetInt("frontHP"));
-        //print("SelectedHPT: " + PlayerPrefs.GetInt("topHP"));
-        //print("SelectedHPU: " + PlayerPrefs.GetInt("utilHP"));
+    //    //print("SelectedLevel: "+ PlayerPrefs.GetInt("selectedLevel"));
+    //    //print("SelectedCar: " + PlayerPrefs.GetInt("car"));
+    //    //print("SelectedHPF: " + PlayerPrefs.GetInt("frontHP"));
+    //    //print("SelectedHPT: " + PlayerPrefs.GetInt("topHP"));
+    //    //print("SelectedHPU: " + PlayerPrefs.GetInt("utilHP"));
 
-        SpawnPlayer();
-    }
+    //}
 
     public void SpawnPlayer()
     {
@@ -98,32 +112,57 @@ public class RaceManager : MonoBehaviour
 
         //instantiate and get components
         GameObject go = Instantiate(_hellriderLonglist[PlayerPrefs.GetInt("car")], _player1SpawnPoint.position, _player1SpawnPoint.rotation);
-        _hellrider = go.GetComponent<Hellrider>();
+        Hellrider _hellrider = go.GetComponent<Hellrider>();
 
         //Add all components to vehicle
-        VehicleUserController vuc = _hellrider.gameObject.AddComponent(typeof(VehicleUserController)) as VehicleUserController;
+        VehicleUserController vuc = go.AddComponent(typeof(VehicleUserController)) as VehicleUserController;
         GiveHellridersUserControlAccess(_hellrider, false);
-        TurretController tc = _hellrider.gameObject.AddComponent(typeof(TurretController)) as TurretController;
-        FallOffTrackRespawner fotr = _hellrider.gameObject.AddComponent(typeof(FallOffTrackRespawner)) as FallOffTrackRespawner;
+        TurretController tc = go.AddComponent(typeof(TurretController)) as TurretController;
+        FallOffTrackRespawner fotr = go.AddComponent(typeof(FallOffTrackRespawner)) as FallOffTrackRespawner;
         
+        //player
+        Player player = go.AddComponent(typeof(Player)) as Player;
+        player.SetName("John");
+        player.SetPlayerID(_noLoadedPlayers+1);
+        players.Add(player);
+        _localHellriderPlayer = player;
+
         //place vehicle on spawnpoint
         fotr._initialRespawnPoint = _player1SpawnPoint;
+
+        // create positionDataPoint for player
+        RacePositionData racePositionData = new RacePositionData(player.playerNr, player.name, _hellrider);
+        racePositions.Add(racePositionData);
+        player.GiveRacePositionDataPoint(racePositionData);
+        go.GetComponent<FallOffTrackRespawner>().OnMilestonePassed += HellriderPassedMilestone;
+
+
+        //if local player, hook up GUI
+        _raceGUIController.HookUpGUI(_hellrider);
 
         //update number of loaded players
         _noLoadedPlayers++;
     }
 
-    private void HandlePlayerCrossesFinishLine(GameObject hellrider)
+    private void HellriderPassedMilestone(Player player, int milestoneID)
     {
-        Debug.Log("Rider crosses finish line!");
+        player.racePositiondata.latestMilestone = milestoneID;
+
+        players.Sort((o1, o2) => o1.racePositiondata.latestMilestone.CompareTo(o2.racePositiondata.latestMilestone));
+        _raceGUIController.UpdateFinishRoster(racePositions);
+    }
+
+    private void HandlePlayerCrossesFinishLine(Player player)
+    {
+        Debug.Log("Player crosses finish line!");
 
         //register rider
-        Hellrider finishedHellrider = hellrider.GetComponent<Hellrider>();
-        _finishTime = raceTimer;
-        finishRoster.Add(finishedHellrider, _finishTime);
+        player.racePositiondata.finishTime = raceTimer;   
+        
+        _raceGUIController.UpdateFinishRoster(racePositions);
 
         //trigger next stage
-        _finished = true;
+        _raceFinished = true;
     }
 
     public void CloseRace()

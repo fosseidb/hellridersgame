@@ -5,7 +5,7 @@ using UnityEngine;
 public class FallOffTrackRespawner : MonoBehaviour
 {
     [Range(0.1f,4f)]
-    private float _acceptableFallingTime = 2f;
+    private float _acceptableFallingTime = 3f;
     private float fallingTimer;
     private LayerMask _layerMask;
 
@@ -13,6 +13,9 @@ public class FallOffTrackRespawner : MonoBehaviour
 
     public Transform _initialRespawnPoint;
     private Transform _respawnPoint;
+
+    public delegate void MilestoneCrossedEvent(Player player, int milestoneID);
+    public event MilestoneCrossedEvent OnMilestonePassed;
 
     // Start is called before the first frame update
     void Start()
@@ -43,11 +46,14 @@ public class FallOffTrackRespawner : MonoBehaviour
         return false;
     }
 
-    private void RespawnFromFall()
+    public void RespawnFromFall()
     {
+        Rigidbody rb = GetComponent<Rigidbody>();
+        rb.isKinematic = true;
         transform.position = _respawnPoint.position+Vector3.up*0.2f;
         transform.rotation = _respawnPoint.rotation;
-        GetComponent<Rigidbody>().velocity = new Vector3(1,1,0);
+        rb.isKinematic = false;
+        rb.AddForce(Vector3.forward);
         Camera.main.transform.rotation = _respawnPoint.rotation;
     }
 
@@ -56,6 +62,7 @@ public class FallOffTrackRespawner : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("RespawnCheckpoint"))
         {
             _respawnPoint = other.transform;
+            OnMilestonePassed?.Invoke(GetComponent<Player>(), other.GetComponent<RaceTrackMilestone>().milestoneID);
         }
     }
 }

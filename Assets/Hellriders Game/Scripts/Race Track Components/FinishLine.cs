@@ -6,14 +6,14 @@ public class FinishLine : MonoBehaviour
 {
 
     // Define delegate
-    public delegate void PlayerCrossedFinishLine(GameObject hellrider);
+    public delegate void PlayerCrossedFinishLine(Player player);
     public event PlayerCrossedFinishLine OnCrossFinishLine;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            OnCrossFinishLine?.Invoke(other.gameObject);
+            OnCrossFinishLine?.Invoke(other.GetComponent<Player>());
         }
     }
 }
