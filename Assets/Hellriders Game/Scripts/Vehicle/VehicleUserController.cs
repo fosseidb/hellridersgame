@@ -10,21 +10,23 @@ public class VehicleUserController : MonoBehaviour
     private bool _userControlEngaged = false;
 
     private VehicleController _vehicleController;
+    private WeaponsAndUtilModsController _weapsAndUtilController;
 
     private Quaternion camRotation;
     Camera _mainCamera;
 
-    private void Awake()
+    private void Start()
     {
         //get the vehicle controller
         _vehicleController = GetComponent<VehicleController>();
+        _weapsAndUtilController = GetComponent<WeaponsAndUtilModsController>();
 
         //connect camera
         camRotation = Camera.main.transform.localRotation;
         _mainCamera = Camera.main;
     }
 
-    private void FixedUpdate()
+    private void LateUpdate()
     {
         if (!_userControlEngaged)
             return;
@@ -38,6 +40,33 @@ public class VehicleUserController : MonoBehaviour
 #else
             m_Car.Move(h, v, v, 0f);
 #endif
+
+        //shooting inputs
+        if (Input.GetButtonDown("Fire1"))
+        {
+            _weapsAndUtilController.StartFiringPrimaryWeapons();
+        }
+
+        if (Input.GetButtonUp("Fire1"))
+        {
+            _weapsAndUtilController.StopFiringPrimaryWeapons();
+        }
+
+        if (Input.GetButtonDown("Fire2"))
+        {
+            _weapsAndUtilController.StartFiringTurretWeapons();
+        }
+
+        if (Input.GetButtonUp("Fire2"))
+        {
+            _weapsAndUtilController.StopFiringTurretWeapons();
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log("Hitting E.");
+            _weapsAndUtilController.ActivateUtilityMod();
+        }
     }
 
     public void GiveHellriderUserControllAccess(bool access)

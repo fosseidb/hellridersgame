@@ -117,7 +117,7 @@ public class RaceManager : MonoBehaviour
         //Add all components to vehicle
         VehicleUserController vuc = go.AddComponent(typeof(VehicleUserController)) as VehicleUserController;
         GiveHellridersUserControlAccess(_hellrider, false);
-        TurretController tc = go.AddComponent(typeof(TurretController)) as TurretController;
+        WeaponsAndUtilModsController tc = go.AddComponent(typeof(WeaponsAndUtilModsController)) as WeaponsAndUtilModsController;
         FallOffTrackRespawner fotr = go.AddComponent(typeof(FallOffTrackRespawner)) as FallOffTrackRespawner;
         
         //player
