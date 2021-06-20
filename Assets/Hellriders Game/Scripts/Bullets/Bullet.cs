@@ -35,9 +35,14 @@ public class Bullet : MonoBehaviour
         transform.Translate(Vector3.forward * Time.deltaTime * _actualMovementSpeed);
     }
 
-    private void OnTriggerEnter(Collider other)
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    Explode(other.gameObject);
+    //}
+
+    private void OnCollisionEnter(Collision collision)
     {
-        Explode(other.gameObject);
+        Explode(collision.gameObject);
     }
 
     private void Explode(GameObject other)
@@ -45,16 +50,11 @@ public class Bullet : MonoBehaviour
         Debug.Log("Booom!");
         if(other != null)
         {
-            if (((1 << other.gameObject.layer) & includeLayers) != 0)
-            {
-                //apply damage if possible
-                if(other.GetComponent<Damageable>()!=null)
-                    other.GetComponent<Damageable>().TakeDamage(_bulletDamageAmount);
+            if(other.GetComponent<Damageable>()!=null)
+                other.GetComponent<Damageable>().TakeDamage(_bulletDamageAmount);
 
-                // clean up bullet
-                StartCoroutine("CleanUp");
-            }
-
+            // clean up bullet
+            StartCoroutine("CleanUp");
         }
     }
 

@@ -6,12 +6,20 @@ public class EnemyTurret : Damageable
 
     public int rateOfFire;
 
+    [SerializeField] GameObject _sensor;
     [SerializeField] GameObject _turret;
     [SerializeField] ParticleSystem _cannonParticleSystem;
-    Transform _target;
+    public Transform _target;
 
-    private bool _isLockedOnTarget = false;
-    private float _shootTimer;
+    public bool _isLockedOnTarget = false;
+    public float _shootTimer;
+
+    private void Awake()
+    {
+        //import health and armor data
+        _health = 20f;
+        _armor = 0f;
+    }
 
     // Update is called once per frame
     void Update()
@@ -28,7 +36,7 @@ public class EnemyTurret : Damageable
     private void Shoot()
     {
         Debug.Log("Spawning bullet!");
-        GameObject bullet = ObjectPooler.SharedInstance.GetPooledBullet();
+        GameObject bullet = ObjectPooler.SharedInstance.GetPooledCannonball();
         if(bullet != null)
         {
             bullet.transform.position = _turret.transform.position + _turret.transform.forward;
@@ -40,24 +48,8 @@ public class EnemyTurret : Damageable
         _shootTimer = 0f;
             
     }
-
-    public void OnTriggerEnter(Collider other)
+    public override void TakeDamage(float damage)
     {
-        if (_isLockedOnTarget)
-            return;
-
-        if(other.tag == "Player")
-        {
-            _target = other.transform;
-            _isLockedOnTarget = true;
-        }
-    }
-    public void OnTriggerExit(Collider other)
-    {
-        if(other.transform == _target)
-        {
-            _isLockedOnTarget = false;
-            _shootTimer = 0f;
-        }
+        base.TakeDamage(damage);
     }
 }

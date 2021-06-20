@@ -5,12 +5,15 @@ using UnityEngine;
 
 public class Damageable : MonoBehaviour
 {
-    protected float _health;
-    protected float _armor;
+    [SerializeField] protected float _health;
+    [SerializeField] protected float _armor;
+    [SerializeField] protected ParticleSystem _explosionParticle;
+    [SerializeField] protected AudioSource _audioSource;
+    [SerializeField] protected AudioClip _explosionClip;
 
     public virtual void TakeDamage(float damage)
     {
-        Debug.Log("Taking " + damage + " damage!");
+        Debug.Log(gameObject.name + " is taking " + damage + " damage!");
         if (_armor > 0)
         {
             if (damage < _armor)
@@ -37,6 +40,23 @@ public class Damageable : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("YOU DIE!");
+        Debug.Log(gameObject.name + " DIES!");
+        if (gameObject.tag != "Player")
+            StartCoroutine("Explode");
+    }
+
+    IEnumerator Explode()
+    {
+        if(_explosionParticle != null)
+            _explosionParticle.Play();
+
+        if (_audioSource != null)
+        {
+            _audioSource.clip = _explosionClip;
+            _audioSource.Play();
+        }
+
+        yield return new WaitForSeconds(2f);
+        Destroy(gameObject);
     }
 }

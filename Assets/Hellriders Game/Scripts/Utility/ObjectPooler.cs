@@ -5,8 +5,9 @@ using UnityEngine;
 public class ObjectPooler : MonoBehaviour
 {
     public static ObjectPooler SharedInstance;
-    public List<GameObject> pooledBullets;
-    public GameObject bulletPrefab;
+    public List<GameObject> pooledCannonballs;
+    public List<GameObject> pooledPlasmaPulses;
+    public GameObject[] bulletPrefabs;
     public int maxAmountOfBullets;
 
     private void Awake()
@@ -17,24 +18,48 @@ public class ObjectPooler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pooledBullets = new List<GameObject>();
         GameObject temp;
+
+        //cannonballs
+        pooledCannonballs = new List<GameObject>();
         for (int i = 0; i < maxAmountOfBullets; i++)
         {
-            temp = Instantiate(bulletPrefab,transform);
+            temp = Instantiate(bulletPrefabs[0],transform);
             temp.SetActive(false);
-            pooledBullets.Add(temp);
+            pooledCannonballs.Add(temp);
+
+        }
+
+        //plasma pulses
+        pooledPlasmaPulses = new List<GameObject>();
+        for (int i = 0; i < maxAmountOfBullets; i++)
+        {
+            temp = Instantiate(bulletPrefabs[1], transform);
+            temp.SetActive(false);
+            pooledPlasmaPulses.Add(temp);
 
         }
     }
 
-    public GameObject GetPooledBullet()
+    public GameObject GetPooledCannonball()
     {
         for(int i =0; i<maxAmountOfBullets; i++)
         {
-            if (!pooledBullets[i].activeInHierarchy)
+            if (!pooledCannonballs[i].activeInHierarchy)
             {
-                return pooledBullets[i];
+                return pooledCannonballs[i];
+            }
+        }
+        return null;
+    }
+
+    public GameObject GetPooledPlasmaPulse()
+    {
+        for (int i = 0; i < maxAmountOfBullets; i++)
+        {
+            if (!pooledPlasmaPulses[i].activeInHierarchy)
+            {
+                return pooledPlasmaPulses[i];
             }
         }
         return null;
