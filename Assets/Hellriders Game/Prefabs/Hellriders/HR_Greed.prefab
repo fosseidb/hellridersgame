@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3569686278829425025}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: CameraLookAt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1336052107056169969}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: FRWheelPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2696588956240251721}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: BLWheelPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 1746004203574284230}
   - component: {fileID: 4335776787434572753}
   - component: {fileID: 4677880598271176867}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: "Sideskj\xF8rt.001"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 2149949722767301151}
   - component: {fileID: 2420026227629804495}
   - component: {fileID: 4530523256699528125}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Lys_Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -266,7 +266,7 @@ GameObject:
   - component: {fileID: 6038056761771858057}
   - component: {fileID: 8958371629626919009}
   - component: {fileID: 951549306205361505}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Hjul_Bak_Venstre
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -348,7 +348,7 @@ GameObject:
   - component: {fileID: 5268430140153698302}
   - component: {fileID: 7080370393603058153}
   - component: {fileID: 7139085388494171561}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: "Hjul_Bak_H\xF8yre"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -430,7 +430,7 @@ GameObject:
   - component: {fileID: 353851704468698925}
   - component: {fileID: 1777292494958044925}
   - component: {fileID: 4622738800792933878}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Luftfilter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -511,7 +511,7 @@ GameObject:
   - component: {fileID: 8287498829718101005}
   - component: {fileID: 6759148121429941015}
   - component: {fileID: 8827458822671837195}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Hjul_Foran_Venstre
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -591,7 +591,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3637385409051636550}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Wheels
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -624,7 +624,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3637385409069474989}
   - component: {fileID: 3637385409069474988}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: BLWheelCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -684,7 +684,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3637385409079578876}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: WheelMeshes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -723,7 +723,7 @@ GameObject:
   - component: {fileID: 2116694456}
   - component: {fileID: 3637385409145787009}
   - component: {fileID: -941681396911625294}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: HR_Greed
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -772,7 +772,7 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 3
 --- !u!114 &2116694456
@@ -787,7 +787,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b32a8146fb0e5af47977f1a298158658, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
+  hellriderData: {fileID: 11400000, guid: c22c4d6730698dd4c940d720ec09941b, type: 2}
   _frontHardpoint: {fileID: 3637385410059073342}
   _topHardpoint: {fileID: 3637385410234424305}
   _utilHardpoint: {fileID: 3637385410576010228}
@@ -863,7 +863,7 @@ GameObject:
   - component: {fileID: 3637385409509502364}
   - component: {fileID: 3637385409509502365}
   - component: {fileID: 3637385409509502338}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -957,7 +957,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3637385409711895847}
   - component: {fileID: 3637385409711895846}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: FRWheelCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1017,7 +1017,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3637385409907035687}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1053,7 +1053,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3637385410059073337}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Hardpoint Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1085,7 +1085,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3637385410062371625}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: WheelColliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1120,7 +1120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3637385410136057337}
   - component: {fileID: 3637385410136057336}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: BRWheelCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1180,7 +1180,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3637385410234424304}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Hardpoint Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1213,7 +1213,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3637385410314032163}
   - component: {fileID: 3637385410314032162}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: FLWheelCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1273,7 +1273,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3637385410576010231}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Hardpoint Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1305,7 +1305,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3637385410986853095}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Cockpit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1336,7 +1336,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4481979207691700668}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Greedy_Car_Short_Stocks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1376,7 +1376,7 @@ GameObject:
   - component: {fileID: 4987330165029220490}
   - component: {fileID: 1805781000169882613}
   - component: {fileID: 192696211012879311}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Spork_Venstre_Bak
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1457,7 +1457,7 @@ GameObject:
   - component: {fileID: 7793151102753756828}
   - component: {fileID: 7939136693102590638}
   - component: {fileID: 5399800870203692192}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Main house
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1538,7 +1538,7 @@ GameObject:
   - component: {fileID: 7528969047912140313}
   - component: {fileID: 2038084052607453676}
   - component: {fileID: 5953047387013106812}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: HjulHolder Foran
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1619,7 +1619,7 @@ GameObject:
   - component: {fileID: 630339653281024755}
   - component: {fileID: 7992532136302278166}
   - component: {fileID: 1511008637368359993}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Ratt_Stamme.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1700,7 +1700,7 @@ GameObject:
   - component: {fileID: 1692202439854506811}
   - component: {fileID: 2075788293514950479}
   - component: {fileID: 2974949893395005496}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: "Sideskj\xF8rt"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1781,7 +1781,7 @@ GameObject:
   - component: {fileID: 8862599337681395980}
   - component: {fileID: 6821502227511590028}
   - component: {fileID: 1308493448485731646}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: "Spork_H\xF8yre_Hjul_Foran"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1863,7 +1863,7 @@ GameObject:
   - component: {fileID: 5619175564268875376}
   - component: {fileID: 6695169910754803193}
   - component: {fileID: 6063320851951593033}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: "Hjul_foran_H\xF8yre"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1945,7 +1945,7 @@ GameObject:
   - component: {fileID: 5424363458150573473}
   - component: {fileID: 956637866712859895}
   - component: {fileID: 645147013957391193}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Spork_Venstre_Hjul_Foran
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2024,7 +2024,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6268866160071380570}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: BRWheelPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2055,7 +2055,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6696466663851862481}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: FLWheelPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2089,7 +2089,7 @@ GameObject:
   - component: {fileID: 3476844183762947073}
   - component: {fileID: 7795844660177014785}
   - component: {fileID: 5659134266549757712}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Ratt_Stamme.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2170,7 +2170,7 @@ GameObject:
   - component: {fileID: 8643751303512248298}
   - component: {fileID: 872023314773341727}
   - component: {fileID: 272096116316620806}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Ratt_Stamme
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2251,7 +2251,7 @@ GameObject:
   - component: {fileID: 2923715427875934034}
   - component: {fileID: 7951568245759005690}
   - component: {fileID: 897923157875756493}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: HjulholderBak
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2332,7 +2332,7 @@ GameObject:
   - component: {fileID: 5698090382040631416}
   - component: {fileID: 702194525397158395}
   - component: {fileID: 2921054217943597827}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: "Spork_H\xF8yre_Bak"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2414,6 +2414,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FrontWeap_Plow
       objectReference: {fileID: 0}
+    - target: {fileID: 2860116840988541714, guid: 2bed4b610cb5e7940a6f71c1fb0ef643,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 2860116840988541715, guid: 2bed4b610cb5e7940a6f71c1fb0ef643,
         type: 3}
       propertyPath: m_RootOrder
@@ -2469,6 +2474,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2860116842486633484, guid: 2bed4b610cb5e7940a6f71c1fb0ef643,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bed4b610cb5e7940a6f71c1fb0ef643, type: 3}
 --- !u!4 &3637385409273889130 stripped
@@ -2484,10 +2494,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3637385410576010231}
     m_Modifications:
+    - target: {fileID: 8423261053840593386, guid: 82998bf630ae1f245b5cfc091b3f44ef,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 8423261054168302021, guid: 82998bf630ae1f245b5cfc091b3f44ef,
         type: 3}
       propertyPath: m_Name
       value: Util_Booster
+      objectReference: {fileID: 0}
+    - target: {fileID: 8423261054168302021, guid: 82998bf630ae1f245b5cfc091b3f44ef,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 8423261054168302022, guid: 82998bf630ae1f245b5cfc091b3f44ef,
         type: 3}
@@ -2619,6 +2639,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: TopWeap_Turret
       objectReference: {fileID: 0}
+    - target: {fileID: 7075553750957564639, guid: b051ace90b61ade4e8dcaa9ecd7ff993,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 7075553752038375616, guid: b051ace90b61ade4e8dcaa9ecd7ff993,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 7075553752813055457, guid: b051ace90b61ade4e8dcaa9ecd7ff993,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 7075553752826168559, guid: b051ace90b61ade4e8dcaa9ecd7ff993,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b051ace90b61ade4e8dcaa9ecd7ff993, type: 3}
 --- !u!4 &3637385409370209263 stripped
@@ -2634,6 +2674,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3637385410059073337}
     m_Modifications:
+    - target: {fileID: 5925288080746577934, guid: 0d34a5ebef3f8574f8d0e700b1d33348,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 5925288081004387052, guid: 0d34a5ebef3f8574f8d0e700b1d33348,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 5925288081206214126, guid: 0d34a5ebef3f8574f8d0e700b1d33348,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 5925288081745146445, guid: 0d34a5ebef3f8574f8d0e700b1d33348,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 5925288082050479320, guid: 0d34a5ebef3f8574f8d0e700b1d33348,
         type: 3}
       propertyPath: m_RootOrder
@@ -2694,6 +2754,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FrontWeap_MachineGuns
       objectReference: {fileID: 0}
+    - target: {fileID: 5925288082050479327, guid: 0d34a5ebef3f8574f8d0e700b1d33348,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d34a5ebef3f8574f8d0e700b1d33348, type: 3}
 --- !u!4 &3637385410296486641 stripped
@@ -2709,6 +2774,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3637385410234424304}
     m_Modifications:
+    - target: {fileID: 2037427505721243875, guid: 9e47f95f1d3d78b4d9e10eb3b7746c3c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 2848103916114656463, guid: 9e47f95f1d3d78b4d9e10eb3b7746c3c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 3569965668028323193, guid: 9e47f95f1d3d78b4d9e10eb3b7746c3c,
         type: 3}
       propertyPath: m_RootOrder
@@ -2768,6 +2843,46 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TopWeap_Plasma
+      objectReference: {fileID: 0}
+    - target: {fileID: 4293608297488145967, guid: 9e47f95f1d3d78b4d9e10eb3b7746c3c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682882819386127477, guid: 9e47f95f1d3d78b4d9e10eb3b7746c3c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4868313818743674185, guid: 9e47f95f1d3d78b4d9e10eb3b7746c3c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 5059710065812878859, guid: 9e47f95f1d3d78b4d9e10eb3b7746c3c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 6997285723144337843, guid: 9e47f95f1d3d78b4d9e10eb3b7746c3c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8867130043760761130, guid: 9e47f95f1d3d78b4d9e10eb3b7746c3c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 9089596015035170709, guid: 9e47f95f1d3d78b4d9e10eb3b7746c3c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 9114049374319695292, guid: 9e47f95f1d3d78b4d9e10eb3b7746c3c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e47f95f1d3d78b4d9e10eb3b7746c3c, type: 3}
@@ -2843,6 +2958,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Util_MissilePod
+      objectReference: {fileID: 0}
+    - target: {fileID: 6271128230147268961, guid: 124de812f9c168a4faef5fb8ef17a410,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 6271128230303779885, guid: 124de812f9c168a4faef5fb8ef17a410,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 6271128230893677829, guid: 124de812f9c168a4faef5fb8ef17a410,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 124de812f9c168a4faef5fb8ef17a410, type: 3}

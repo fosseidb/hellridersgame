@@ -21,7 +21,7 @@ public class FallOffTrackRespawner : MonoBehaviour
     void Start()
     {
         _respawnPoint = _initialRespawnPoint;
-        _layerMask = LayerMask.GetMask("Road");
+        _layerMask = LayerMask.GetMask("Ground");
 
     }
 

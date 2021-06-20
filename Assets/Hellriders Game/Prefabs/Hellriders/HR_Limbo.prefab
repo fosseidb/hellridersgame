@@ -1204,6 +1204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b32a8146fb0e5af47977f1a298158658, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hellriderData: {fileID: 11400000, guid: d1466885e79631848aa0661a419a246c, type: 2}
   _frontHardpoint: {fileID: 1883548370952469549}
   _topHardpoint: {fileID: 1883548372734267618}
   _utilHardpoint: {fileID: 1883548372543144167}
@@ -1232,13 +1233,16 @@ MonoBehaviour:
   - {fileID: 8138315500861120807}
   _centreOfMassOffset: {x: 0, y: 0, z: 0}
   _maximumSteerAngle: 20
-  m_TractionControl: 0.037
+  _steerHelper: 0
+  _tractionControl: 0
   _fullTorqueOverAllWheels: 3000
-  m_Topspeed: 200
+  _downforce: 100
+  _topspeed: 200
   _brakeTorque: 1000
   _reverseTorque: 1000
   _maxHandbrakeTorque: 500
-  m_RevRangeBoundary: 1
+  _revRangeBoundary: 1
+  _slipLimit: 0
 --- !u!114 &211836607
 MonoBehaviour:
   m_ObjectHideFlags: 0
