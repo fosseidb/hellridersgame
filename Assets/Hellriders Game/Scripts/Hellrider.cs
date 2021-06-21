@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hellrider : MonoBehaviour
+public class Hellrider : Damageable
 {
-    public Sprite icon;
+    public HellriderData hellriderData;
 
     [SerializeField] private GameObject _frontHardpoint;
     [SerializeField] private GameObject _topHardpoint;
@@ -17,6 +17,10 @@ public class Hellrider : MonoBehaviour
     private GameObject[] _hardPoints;
 
     public GameObject TopHardpoint { get => _topHardpoint; set => _topHardpoint = value; }
+
+    public delegate void onHellriderTakeDamage(float health, float armor);
+    public event onHellriderTakeDamage HellriderDamageEvent;
+
 
     public void Awake()
     {
@@ -33,13 +37,23 @@ public class Hellrider : MonoBehaviour
             PlayerPrefs.GetInt("utilHP"),
         };
 
-        UpdateHardpoints(loadedSetup);        
+        UpdateHardpoints(loadedSetup);
+
+        //import health and armor data
+        _health = hellriderData.hellriderHealth;
+        _armor = hellriderData.hellriderArmor;
     }
+
     public GameObject[] PresentHardpoints()
     {
         return _hardPoints;
     }
 
+    public override void TakeDamage(float damage)
+    {
+        base.TakeDamage(damage);
+        HellriderDamageEvent?.Invoke(_health, _armor);
+    }
 
     public void UpdateHardpoints(int[] setup)
     {

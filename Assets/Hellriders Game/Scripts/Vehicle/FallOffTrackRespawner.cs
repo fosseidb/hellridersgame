@@ -21,7 +21,7 @@ public class FallOffTrackRespawner : MonoBehaviour
     void Start()
     {
         _respawnPoint = _initialRespawnPoint;
-        _layerMask = LayerMask.GetMask("Road");
+        _layerMask = LayerMask.GetMask("Ground");
 
     }
 
@@ -49,12 +49,12 @@ public class FallOffTrackRespawner : MonoBehaviour
     public void RespawnFromFall()
     {
         Rigidbody rb = GetComponent<Rigidbody>();
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
         rb.isKinematic = true;
-        transform.position = _respawnPoint.position+Vector3.up*0.2f;
+        transform.position = _respawnPoint.position;
         transform.rotation = _respawnPoint.rotation;
         rb.isKinematic = false;
-        rb.AddForce(Vector3.forward);
-        Camera.main.transform.rotation = _respawnPoint.rotation;
     }
 
     private void OnTriggerEnter(Collider other)

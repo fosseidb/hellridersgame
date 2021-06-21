@@ -65,7 +65,7 @@ public class RaceManager : MonoBehaviour
 
         // connect our conditional transitions
         At(loadIn, countdown, AllPlayersLoaded());
-        At(countdown, race, BeginRace());
+        At(countdown, race, CountdownComplete());
         At(race, finish, FinishRace());
 
         //Connect "From any State" transitions
@@ -76,7 +76,7 @@ public class RaceManager : MonoBehaviour
 
         //condition functions
         Func<bool> AllPlayersLoaded() => () => _noLoadedPlayers == _noTotalPlayersInRace && loadIn.introCountdownTimer <= 0f;
-        Func<bool> BeginRace() => () => countdown._raceCountdownTimer <= 0f;
+        Func<bool> CountdownComplete() => () => countdown._raceCountdownTimer <= 0f;
         Func<bool> FinishRace() => () => _raceFinished == true;
 
         //connect GUI system
@@ -87,24 +87,10 @@ public class RaceManager : MonoBehaviour
         SpawnPlayer();
         
         //Set initial state
-        _stateMachine.SetState(loadIn); 
+        _stateMachine.SetState(loadIn); //loadIn
     }
 
     private void Update() => _stateMachine.Tick();
-
-    //// Start is called before the first frame update
-    //void Start()
-    //{
-
-    //    //_hellrider = FindObjectOfType<Hellrider>();
-
-    //    //print("SelectedLevel: "+ PlayerPrefs.GetInt("selectedLevel"));
-    //    //print("SelectedCar: " + PlayerPrefs.GetInt("car"));
-    //    //print("SelectedHPF: " + PlayerPrefs.GetInt("frontHP"));
-    //    //print("SelectedHPT: " + PlayerPrefs.GetInt("topHP"));
-    //    //print("SelectedHPU: " + PlayerPrefs.GetInt("utilHP"));
-
-    //}
 
     public void SpawnPlayer()
     {
@@ -117,7 +103,7 @@ public class RaceManager : MonoBehaviour
         //Add all components to vehicle
         VehicleUserController vuc = go.AddComponent(typeof(VehicleUserController)) as VehicleUserController;
         GiveHellridersUserControlAccess(_hellrider, false);
-        TurretController tc = go.AddComponent(typeof(TurretController)) as TurretController;
+        WeaponsAndUtilModsController tc = go.AddComponent(typeof(WeaponsAndUtilModsController)) as WeaponsAndUtilModsController;
         FallOffTrackRespawner fotr = go.AddComponent(typeof(FallOffTrackRespawner)) as FallOffTrackRespawner;
         
         //player
@@ -131,9 +117,9 @@ public class RaceManager : MonoBehaviour
         fotr._initialRespawnPoint = _player1SpawnPoint;
 
         // create positionDataPoint for player
-        RacePositionData racePositionData = new RacePositionData(player.playerNr, player.name, _hellrider);
-        racePositions.Add(racePositionData);
-        player.GiveRacePositionDataPoint(racePositionData);
+        //RacePositionData racePositionData = new RacePositionData(player.playerNr, player.name, _hellrider);
+        //racePositions.Add(racePositionData);
+        //player.GiveRacePositionDataPoint(racePositionData);
         go.GetComponent<FallOffTrackRespawner>().OnMilestonePassed += HellriderPassedMilestone;
 
 

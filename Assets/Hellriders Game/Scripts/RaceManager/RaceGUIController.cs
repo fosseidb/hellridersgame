@@ -1,12 +1,10 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RaceGUIController : MonoBehaviour
 {
-
     public TMP_Text raceTimer;
     public TMP_Text countDownTimer;
     public TMP_Text levelName;
@@ -22,6 +20,8 @@ public class RaceGUIController : MonoBehaviour
     public TMP_Text revText;
     public TMP_Text currentSpeedText;
     public TMP_Text gearNumText;
+    public Slider healthSlider;
+    public Slider armorSlider;
 
     [Header("FinishRoster")]
     public GameObject rosterContainer;
@@ -56,6 +56,12 @@ public class RaceGUIController : MonoBehaviour
     internal void HookUpGUI(Hellrider hellrider)
     {
         _hellrider = hellrider;
+
+        //set up health and armor
+        _hellrider.HellriderDamageEvent += UpdateHealthArmor;
+        healthSlider.maxValue = _hellrider.hellriderData.hellriderHealth;
+        armorSlider.maxValue = _hellrider.hellriderData.hellriderArmor;
+        UpdateHealthArmor(_hellrider.hellriderData.hellriderHealth, _hellrider.hellriderData.hellriderArmor);
     }
 
     public void SetUniquePanel(int i)
@@ -64,6 +70,11 @@ public class RaceGUIController : MonoBehaviour
         countDownPanel.SetActive(i == 1);
         racePanel.SetActive(i == 2);
         finishPanel.SetActive(i == 3);
+    }
+    public void UpdateHealthArmor(float health, float armor)
+    {
+        healthSlider.value = health;
+        armorSlider.value = armor;
     }
 
     internal void UpdateFinishRoster(List<RacePositionData> roster)
@@ -81,7 +92,7 @@ public class RaceGUIController : MonoBehaviour
             {
                 positionRows[i].FillIn(
                     currentRoster[i].positionNr,
-                    currentRoster[i].hellrider.icon,
+                    currentRoster[i].hellrider.hellriderData.hellriderIcon,
                     currentRoster[i].playerName,
                     ConvertToRaceTime(currentRoster[i].finishTime)
                     );
@@ -94,7 +105,7 @@ public class RaceGUIController : MonoBehaviour
 
                 hellriderRow.GetComponent<HellriderPlacingRow>().FillIn(
                     currentRoster[i].positionNr,
-                    currentRoster[i].hellrider.icon,
+                    currentRoster[i].hellrider.hellriderData.hellriderIcon,
                     currentRoster[i].playerName,
                     ConvertToRaceTime(currentRoster[i].finishTime)
                     );

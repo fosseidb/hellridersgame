@@ -11,7 +11,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Hellriders Game/Scenes/Lvl_1_Limbo.unity
     guid: 3b44aaa5e754a704a9323ce0fafa168f
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   m_configObjects: {}

@@ -21,6 +21,7 @@ public class RaceStage : IState
 
         // give all drivers user acces
         _rm.GiveHellridersUserControlAccess(_rm._localHellriderPlayer.GetComponent<Hellrider>(), true);
+        
     }
 
     public void OnExit()
