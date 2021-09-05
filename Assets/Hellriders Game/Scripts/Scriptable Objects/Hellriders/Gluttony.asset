@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ebb8d727e7bd20744b6c7973495147a1, type: 3}
-  m_Name: Limbo
+  m_Name: Gluttony
   m_EditorClassIdentifier: 
-  hellriderName: Limbo
-  hellriderHealth: 50
-  hellriderArmor: 50
-  hellriderMaxSpeed: 20
-  hellriderMaxAcceleration: 20
+  hellriderName: Gluttony
+  hellriderHealth: 200
+  hellriderArmor: 100
+  hellriderMaxSpeed: 30
+  hellriderMaxAcceleration: 30
   hellriderIcon: {fileID: 21300000, guid: a15da4cb9b0ffba4f835ab6c1bb90100, type: 3}
-  unlocked: 1
+  unlocked: 0

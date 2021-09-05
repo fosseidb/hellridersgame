@@ -1310,7 +1310,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3637385409069474962}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.616, y: 0.138, z: -0.927}
+  m_LocalPosition: {x: -0.898, y: 0.138, z: -0.927}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3637385410062371625}
@@ -1443,9 +1443,9 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!114 &2116694456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1458,6 +1458,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b32a8146fb0e5af47977f1a298158658, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _health: 0
+  _armor: 0
+  _explosionParticle: {fileID: 0}
+  _audioSource: {fileID: 0}
+  _explosionClip: {fileID: 0}
+  hellriderData: {fileID: 11400000, guid: c35d72615dd77ff44917510a36e1ed0c, type: 2}
   _frontHardpoint: {fileID: 3637385410059073342}
   _topHardpoint: {fileID: 3637385410234424305}
   _utilHardpoint: {fileID: 3637385410576010228}
@@ -1486,13 +1492,16 @@ MonoBehaviour:
   - {fileID: 8026100769050232398}
   _centreOfMassOffset: {x: 0, y: 0, z: 0}
   _maximumSteerAngle: 20
-  m_TractionControl: 0.037
+  _steerHelper: 0
+  _tractionControl: 0
   _fullTorqueOverAllWheels: 3000
-  m_Topspeed: 200
+  _downforce: 100
+  _topspeed: 200
   _brakeTorque: 1000
   _reverseTorque: 1000
   _maxHandbrakeTorque: 500
-  m_RevRangeBoundary: 1
+  _revRangeBoundary: 1
+  _slipLimit: 0
 --- !u!114 &-941681396911625294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1753,6 +1762,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3a7e73a6e44105468f7c15192a36600, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canFire: 0
+  isFiring: 0
+  rateOfFire: 1
+  _muzzle: {fileID: 0}
 --- !u!1 &3637385409370209260
 GameObject:
   m_ObjectHideFlags: 0
@@ -1799,6 +1812,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3a7e73a6e44105468f7c15192a36600, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canFire: 0
+  isFiring: 0
+  rateOfFire: 1
+  _muzzle: {fileID: 0}
 --- !u!1 &3637385409509502336
 GameObject:
   m_ObjectHideFlags: 0
@@ -2175,6 +2192,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3a7e73a6e44105468f7c15192a36600, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canFire: 0
+  isFiring: 0
+  rateOfFire: 1
+  _muzzle: {fileID: 0}
 --- !u!1 &3637385409711895844
 GameObject:
   m_ObjectHideFlags: 0
@@ -2459,7 +2480,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3637385410136057342}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.543, y: 0.14, z: -0.925}
+  m_LocalPosition: {x: 0.904, y: 0.14, z: -0.925}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3637385410062371625}
@@ -2519,7 +2540,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3637385410234424305}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.729, z: -0.978}
+  m_LocalPosition: {x: 0, y: 1.274, z: -0.978}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3637385409370209263}
@@ -2574,6 +2595,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3a7e73a6e44105468f7c15192a36600, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canFire: 0
+  isFiring: 0
+  rateOfFire: 1
+  _muzzle: {fileID: 0}
 --- !u!1 &3637385410314032160
 GameObject:
   m_ObjectHideFlags: 0
@@ -3777,6 +3802,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3a7e73a6e44105468f7c15192a36600, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canFire: 0
+  isFiring: 0
+  rateOfFire: 1
+  _muzzle: {fileID: 0}
 --- !u!1 &7769920624219341874
 GameObject:
   m_ObjectHideFlags: 0
